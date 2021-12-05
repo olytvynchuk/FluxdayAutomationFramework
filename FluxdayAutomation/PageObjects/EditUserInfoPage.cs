@@ -38,21 +38,7 @@ namespace FluxdayAutomation.PageObjects
             field.SendKeys(value);
             return new();
         }
-
-        public T CreateNewUser<T>(string newUserName, string nickName, string eMail, string employeeCode,
-            string employeeRole, string password, string manager) where T : class, new()
-        {
-            SetValueToUserFormField<T>(UserNameField, newUserName);
-            SetValueToUserFormField<T>(UserNickNameField, nickName);
-            SetValueToUserFormField<T>(UserEmailField, eMail);
-            SetValueToUserFormField<T>(UserEmployeeCodeField, employeeCode);
-            SelectEmployeeRole<T>(employeeRole);
-            SetValueToUserFormField<T>(UserPasswordField, password);
-            SetValueToUserFormField<T>(UserPasswordConfirmationField, password);
-            SelectEmployeeManager<T>(manager);
-            ClickOnButton<T>(ButtonSave);
-            return new ();
-        }
+              
 
         public T SelectEmployeeRole<T>(string role) where T : class, new()
         {

@@ -11,13 +11,6 @@ namespace FluxdayAutomation.PageObjects
 {
     public abstract class BasePage
     {
-        //protected BasePage(IWebDriver current)
-        //{
-        //    Current = current;
-        //}
-
-        //public IWebDriver Current { get; }
-
         public virtual T ClickOnButton<T>(IWebElement button) where T : class, new()
         {
             button.Click();

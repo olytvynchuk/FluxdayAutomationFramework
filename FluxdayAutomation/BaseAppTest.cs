@@ -25,7 +25,7 @@ namespace FluxdayAutomation
         [TearDown]
         public void AfterEachTestCleanup()
         {
-            //Driver.Current.Quit();
+            Driver.Current.Quit();
             Console.WriteLine("Closed app");
         }
     }    
