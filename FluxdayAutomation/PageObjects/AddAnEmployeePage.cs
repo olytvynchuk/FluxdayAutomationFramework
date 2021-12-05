@@ -22,7 +22,7 @@ namespace FluxdayAutomation.PageObjects
         public IWebElement UserRoleEmployee => Driver.FindElement(By.XPath("//ul[@class='select2-results']//*[text()='Employee']"));
         public IWebElement UserEmployeeRoleInput => Driver.FindElement(By.XPath("//div[@class='select2-search']//input[@class='select2-input']"));
         public IWebElement ManagersSelectInput => Driver.FindElement(By.XPath("//select[@id='user_manager_ids']"));//("//ul[@class='select2-choices']"));manager_ids']"));
-        public IWebElement ManagersSelect => Driver.FindElement(By.XPath("//li[@class='select2-search-field']//input[@class='select2-input']"));
+        public IWebElement ManagersSelect => Driver.FindClickableElement(By.XPath("//li[@class='select2-search-field']//input[@class='select2-input']"));
         public IWebElement SelectOptionAdminUser => Driver.FindElement(By.XPath("//ul[@class='select2-results']//*[text()='Admin User']"));
         public IWebElement SelectOptionEmployee1 => Driver.FindElement(By.XPath("//ul[@class='select2-results']//*[text()='Employee 1']"));
         public IWebElement SelectOptionEmployee2 => Driver.FindElement(By.XPath("//ul[@class='select2-results']//*[text()='Employee 2']"));
@@ -60,7 +60,7 @@ namespace FluxdayAutomation.PageObjects
 
         public void SelectEmployeeManager(string manager)
         {
-            ManagersSelectInput.Click();
+            ManagersSelect.Click();
             SelectOptionTeamLead.Click();
         }
     }

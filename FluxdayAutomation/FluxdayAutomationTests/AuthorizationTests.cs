@@ -37,7 +37,7 @@ namespace FluxdayAutomation.FluxdayAutomationTests
         {
             loginPage
                 .LoginToApp<SideBarMenu>(AdminUser, Password)
-                .ClickOnLogOutButton<AuthorizationPage>();
+                .ReturnToAuthorizationPage();
             Assert.That(loginPage.AuthorizationPageLogo.Displayed);
         }
 

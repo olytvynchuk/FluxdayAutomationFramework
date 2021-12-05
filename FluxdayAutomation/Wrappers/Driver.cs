@@ -43,7 +43,13 @@ namespace FluxdayAutomation.SeleniumUtils.Wrappers
             IWebElement nativeWebElement = _webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(by));
             return nativeWebElement;
         }
-                
+
+        public static IWebElement FindClickableElement(By by)
+        {
+            _webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
+            IWebElement nativeWebElement = _webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(by));
+            return nativeWebElement;
+        }       
     }
 }
 
