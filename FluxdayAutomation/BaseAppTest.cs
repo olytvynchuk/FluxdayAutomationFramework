@@ -12,7 +12,8 @@ namespace FluxdayAutomation
         [SetUp]
         public void Initialize()
         {
-            Driver.Init();            
+            Driver.Init();
+            Pages.Init();
             Driver.Goto(BasePageUrl);
             Console.WriteLine("Opened url");
         }
@@ -20,7 +21,6 @@ namespace FluxdayAutomation
         {
             return TestStepContext<T>.Instance;
         }
-
 
         [TearDown]
         public void AfterEachTestCleanup()

@@ -1,5 +1,6 @@
 ﻿using FluxdayAutomation.PageObjects;
 using FluxdayAutomation.SeleniumUtils.Wrappers;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,11 @@ namespace FluxdayAutomation.Components
         {
             AddNewTaskHeaderButton.Click();
             return new();
+        }
+        public T VerifyIfFluxdayLogoDisplayed<T>(IWebElement logo) where T : class, new()
+        {
+            Assert.That(logo.Displayed);
+            return new ();
         }
     }
 }

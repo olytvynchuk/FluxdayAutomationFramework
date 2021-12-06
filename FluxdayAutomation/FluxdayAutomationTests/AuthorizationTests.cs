@@ -10,50 +10,50 @@ namespace FluxdayAutomation.FluxdayAutomationTests
 {
     public class AuthorizationTests: BaseAppTest
     {
-        AuthorizationPage loginPage = new AuthorizationPage();
-        HeaderNav headerNav = new HeaderNav();
+       
 
         [Test]
         [Description("TestCase(WI_10001), Processed(2021 - 08 - 28), Updated(2021 - 08 - 29)")]
         public void WI_10001_VerifyLoginToAppAsAdmin()
         {
-            loginPage
-                .LoginToApp<HeaderNav>(AdminUser, Password);
-            Assert.That(headerNav.FluxdayLogo.Displayed);
+            Pages.Authorization
+                .LoginToApp<HeaderNav>(AdminUser, Password)
+                .VerifyIfFluxdayLogoDisplayed<HeaderNav>(Pages.Header.FluxdayLogo);
         }
 
         [Test]
         [Description("TestCase(WI_10002), Processed(2021 - 08 - 28), Updated(2021 - 08 - 29)")]
         public void WI_10002_VerifyLoginToAppAsTeamLead()
         {
-            loginPage                
-                .LoginToApp<HeaderNav>(TeamLead, Password);
-            Assert.That(headerNav.FluxdayLogo.Displayed);
+            Pages.Authorization
+               .LoginToApp<HeaderNav>(TeamLead, Password)
+               .VerifyIfFluxdayLogoDisplayed<HeaderNav>(Pages.Header.FluxdayLogo);
         }
 
         [Test]
         [Description("TestCase(WI_10003), Processed(2021 - 08 - 28), Updated(2021 - 08 - 29)")]
         public void WI_10003_VerifyLogOutFromApp()
         {
-            loginPage
-                .LoginToApp<SideBarMenu>(AdminUser, Password)
-                .ReturnToAuthorizationPage();
-            Assert.That(loginPage.AuthorizationPageLogo.Displayed);
+            Pages.Authorization
+               .LoginToApp<SideBarMenu>(AdminUser, Password)
+               .ReturnToAuthorizationPage()
+               .VerifyIfFluxdayLoginLogoDisplayed();
+
         }
 
         [Test]
         [Description("TestCase(WI-10004), Processed (2021-08-29), Updated(2021-08-29)")]
         public void WI_10004_VerifyCheckBoxRememberMe()
         {
-            loginPage
-               .TypeTextToField<AuthorizationPage>(loginPage.EmailField, TeamLead)
-               .TypeTextToField<AuthorizationPage>(loginPage.PasswordField, Password)
+            Pages.Authorization
+              .TypeTextToField<AuthorizationPage>(Pages.Authorization.EmailField, TeamLead)
+               .TypeTextToField<AuthorizationPage>(Pages.Authorization.PasswordField, Password)
                .CheckUnCheckRememberMeCheckbox()
                .ClickOnLoginButton<SideBarMenu>()
                .ReturnToAuthorizationPage()
-               .TypeTextToField<AuthorizationPage>(loginPage.EmailField, TeamLead)
-               .ClickOnLoginButton<HeaderNav>();
-            Assert.That(headerNav.FluxdayLogo.Displayed);
+               .TypeTextToField<AuthorizationPage>(Pages.Authorization.EmailField, TeamLead)
+               .ClickOnLoginButton<HeaderNav>()
+               .VerifyIfFluxdayLogoDisplayed<HeaderNav>(Pages.Header.FluxdayLogo); 
         }
 
         [Test]
@@ -61,9 +61,10 @@ namespace FluxdayAutomation.FluxdayAutomationTests
         public void WI_10005_VerifyLogInWithIncorrectPassword()
         {
             var wrongPassword = TestDataGeneration.GenerateRandomAlphanumericString(8);
-            loginPage
-                .LoginToApp<AuthorizationPage>(AdminUser, wrongPassword);
-            Assert.That(loginPage.LogInButton.Displayed);
+            Pages.Authorization
+               .LoginToApp<AuthorizationPage>(AdminUser, wrongPassword)
+               .VerifyIfFluxdayLoginLogoDisplayed();
+
         }
 
         [Test]
@@ -71,9 +72,9 @@ namespace FluxdayAutomation.FluxdayAutomationTests
         public void WI_10006_VerifyLogInWithIncorrectUserName()
         {
             var wrongUserName = TestDataGeneration.GenerateRandomAlphanumericString(15);
-            loginPage
-                .LoginToApp<AuthorizationPage>(wrongUserName, Password);
-            Assert.That(loginPage.LogInButton.Displayed);
+            Pages.Authorization
+               .LoginToApp<AuthorizationPage>(wrongUserName, Password)
+               .VerifyIfFluxdayLoginLogoDisplayed();
         }
     }
 }

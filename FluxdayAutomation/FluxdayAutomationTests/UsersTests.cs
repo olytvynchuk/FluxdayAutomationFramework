@@ -13,13 +13,13 @@ namespace FluxdayAutomation.FluxdayAutomationTests
 {
     public class UsersTests: BaseAppTest
     {
-        AuthorizationPage loginPage = new AuthorizationPage();
+        //AuthorizationPage loginPage = new AuthorizationPage();
         
         [Test]
         [Description("TestCase(WI_10007), Processed(2021 - 08 - 28), Updated(2021 - 11 - 25)")]
         public void WI_10007_VerifyIsNewUserWasCreated()
         {
-            loginPage
+            Pages.Authorization
                 .LoginToApp<SideBarMenu>(AdminUser, Password)
                 .GoToUsersPage()
                 .ClickOnAddUserButton<AddAnEmployeePage>()
@@ -31,7 +31,7 @@ namespace FluxdayAutomation.FluxdayAutomationTests
         [Description("TestCase(WI_10008), Processed(2021 - 08 - 28), Updated(2021 - 11 - 25)")]
         public void WI_10008_VerifyEditUsersDataOptions()
         {
-            loginPage
+            Pages.Authorization
                 .LoginToApp<SideBarMenu>(AdminUser, Password)
                 .GoToUsersPage()
                 .ChooseUserForDataEdition<UsersPage>(UsersPage.UserEmployee1)

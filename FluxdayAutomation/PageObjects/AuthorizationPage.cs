@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace FluxdayAutomation.PageObjects
 {
@@ -20,7 +21,11 @@ namespace FluxdayAutomation.PageObjects
         public IWebElement LogInButton => Driver.FindElement(By.XPath("//button[@class='btn-login']"));
         public IWebElement UnsuccesfullLoginAlert => Driver.FindElement(By.XPath("//div[contains (@class,'alert')]"));
 
-        
+        public AuthorizationPage VerifyIfFluxdayLoginLogoDisplayed() 
+        {
+            Assert.That(AuthorizationPageLogo.Displayed);
+            return this;
+        }
 
         public T TypeTextToField<T>(IWebElement fieldName, string text) where T: class, new() 
         {
